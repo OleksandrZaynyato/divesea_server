@@ -10,11 +10,8 @@ export const createNFTSchema = yup.object().shape({
             value: yup.string().required('Value is required')
         })
     ).nullable(),
-
-    owner: yup.object({
-        username: yup.string().nullable(),
-        userId: yup.string().nullable(), // якщо userId — ObjectId, yup.string ок
-    }),
+    createdBy: yup.string().required('Creator is required'),
+    collection: yup.string().nullable(),
     royaltyPercentage: yup.number().min(0, 'Royalty percentage cannot be less than 0').max(100, 'Royalty percentage cannot exceed 100').nullable(),
     size: yup.string().nullable(),
     tags: yup.array().of(yup.string()).nullable(),
